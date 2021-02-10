@@ -30,11 +30,12 @@
 
 $fontPrimary : "Poppins";
 
-$colorOrange : #FF7A59;
-$colorGreen : #00AFB2;
+$colorOrange : #FF9300;
+$colorPink : #FF0079;
 $colorBlueLight : #E5F5F8;
 $colorLight : #F5F8FA;
-$colorDocker: #33475B;
+$colorGray : #C4C4C4;
+$colorDocker: #141414;
 $colorDark : #393939;
 $colorBlack : #000000;
 
@@ -51,10 +52,11 @@ $colorBlack : #000000;
     justify-content: center;
 
     .content {
-        width: 90%;
+        width: 80%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 40px;
 
         .content-head {
             width: 100%;
@@ -83,11 +85,12 @@ $colorBlack : #000000;
 
             .content-choose {
                 width: 65%;
+                box-sizing: border-box;
+                padding: 0px 10px 0px 10px;
 
                 .packet {
-                    box-sizing: border-box;
-                    padding: 20px;
                     width: 100%;
+                    margin-bottom: 50px;
 
                     .packet-title {
                         margin-bottom: 30px;
@@ -105,7 +108,11 @@ $colorBlack : #000000;
                             a {
                                 text-decoration: none;
                                 font-size: 16px;
-                                color: $colorGreen;
+                                color: $colorPink;
+                            }
+
+                            a:hover {
+                                color: $colorOrange;
                             }
                         }
 
@@ -117,12 +124,347 @@ $colorBlack : #000000;
 
                     .packet-body {
 
+                        .card-group {
+                            display: flex;
+                            justify-content: space-between;
+
+                            .card {
+                                width: 215px;
+                                height: 90px;
+                                background-color: white;
+                                border: 2px solid rgba($colorPink, $alpha: 0.4);
+                                // box-shadow: 0px 0px 10px rgba($colorPink, $alpha: 0.24);
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                cursor: pointer;
+
+                                h4 {
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    margin-bottom: 10px;
+                                }
+
+                                h5 {
+                                    font-size: 14px;
+                                }
+                            }
+
+                            .card.active {
+                                border: 2px solid rgba($colorPink, $alpha: 1.0);
+                                box-shadow: 0px 0px 10px rgba($colorPink, $alpha: 0.32);
+                                background-color: $colorPink;
+                                color: white;
+                            }
+
+                        }
                     }
                 }
+
+                .number-users {
+                    width: 100%;
+                    margin-bottom: 50px;
+
+                    .number-title {
+                        margin-bottom: 30px;
+
+                        .title-heading {
+                            margin-bottom: 20px;
+
+                            h3 {
+                                font-size: 16px;
+                                font-weight: 600;
+                            }
+                        }
+
+                        .title-body {
+                            display: flex;
+                            justify-content: space-between;
+
+                            p {
+                                width: 78%;
+                                font-size: 14px;
+                                line-height: 21px;
+
+                                a {
+                                    color: $colorPink;
+                                    cursor: pointer;
+                                }
+
+                                a:hover {
+                                    color: $colorOrange;
+                                }
+                            }
+
+                            input {
+                                width: 20%;
+                                outline: none;
+                                box-sizing: border-box;
+                                padding: 0px 10px 0px 10px;
+                                height: 40px;
+                                background-color: $colorLight;
+                                border: 1px solid rgba($color: $colorDocker, $alpha: 0.4);
+                                font-size: 16px;
+                            }
+                        }
+                    }
+
+                    .number-body {
+
+                        .scroll-bar {
+                            margin-bottom: 10px;
+
+                            input {
+                                width: 100%;
+                                background-color: rgba($color: $colorPink, $alpha: 0.5);
+                            }
+                            
+                        }
+
+                        .range-value {
+                            display: flex;
+                            justify-content: space-between;
+
+                            h5 {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+
+                .add-on {
+
+                    .addOn-title {
+                        margin-bottom: 30px;
+
+                        .title-heading {
+                            margin-bottom: 20px;
+
+                            h2 {
+                                font-size: 24px;
+                                font-weight: 600;
+                            }
+                        }
+
+                        .title-body {
+
+                            p {
+                                line-height: 24px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                    .addOn-body {
+
+                        .card-group {
+
+                            .card {
+                                box-sizing: border-box;
+                                padding: 20px;
+                                width: 100%;
+                                border: 1px solid rgba($colorPink, $alpha: 0.5);
+                                border-radius: 5px;
+                                display: flex;
+                                justify-content: space-between;
+                                margin-bottom: 10px;
+                                cursor: pointer;
+
+                                input {
+                                    margin-right: 20px;
+                                }
+
+                                .card-text {
+                                    h4 {
+                                        font-weight: 500;
+                                        font-size: 16px;
+                                        margin-bottom: 15px;
+                                    }
+
+                                    h5 {
+                                        font-size: 16px;
+                                        margin-bottom: 15px;
+                                    }
+
+                                    p {
+                                        font-size: 14px;
+                                        line-height: 24px;
+                                    }
+                                }
+                            }
+
+                            .card:hover {
+                                border: 1px solid rgba($colorOrange, $alpha: 0.5);
+                            }
+                        }
+                    }
+                }
+
             }
 
             .content-price {
                 width: 35%;
+                padding: 0px 20px 0px 20px;
+                box-sizing: border-box;
+
+                .card-price {
+                    width: 100%;
+                    
+                    .price-body {
+                        border: 1px solid $colorGray;
+                        padding: 20px;
+                        box-sizing: border-box;
+
+                        .action {
+                            margin-bottom: 20px;
+                            
+                            .btn-order {
+                                height: 50px;
+                                width: 100%;
+                                background-color: $colorPink;
+                                color: white;
+                                font-weight: 600;
+                                border: 2px solid transparent;
+                                border-radius: 5px;
+                                font-size: 16px;
+                                outline: none;
+                                transition: 300ms;
+                                cursor: pointer;
+                            }
+
+                            .btn-order:hover {
+                                border: 2px solid $colorPink;
+                                background-color: white;
+                                color: $colorPink;
+                                transition: 300ms;
+                            }
+                        }
+
+                        hr {
+                            border: none;
+                            background-color: $colorGray;
+                            height: 1px;
+                            margin-bottom: 20px;
+                        }
+
+                        .list-bundle {
+                            margin-bottom: 20px;
+
+                            h3 {
+                                font-weight: 500;
+                                margin-bottom: 20px;
+                                font-size: 14px;
+                            }
+
+                            .card-group {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+
+                                .card {
+                                    background-color: $colorLight;
+                                    width: 100%;
+                                    display: flex;
+                                    margin-bottom: 10px;
+
+                                    .card-text {
+                                        width: 90%;
+                                        padding: 20px;
+                                        box-sizing: border-box;
+
+                                        h4 {
+                                            font-weight: 500;
+                                            font-size: 14px;
+                                            margin-bottom: 10px;
+                                        }
+
+                                        h5 {
+                                            font-size: 14px;
+                                        }
+                                    }
+
+                                    .card-icon {
+                                        padding: 10px 0px 10px 0px;
+                                        box-sizing: border-box;
+                                        width: 10%;
+                                        display: flex;
+                                        justify-content: center;
+
+                                    }
+                                }
+                            }
+                        }
+
+                        .text-price {
+                            margin-bottom: 20px;
+                            text-align: center;
+
+                            h2 {
+                                font-weight: 600;
+                                font-size: 20px;
+                                margin-bottom: 10px;
+                            }
+                        }
+
+                        .discount {
+                            margin-bottom: 20px;
+
+                            .card {
+                                padding: 20px;
+                                background-color: $colorLight;
+                                border: 1px solid rgba($colorPink, $alpha: 0.5);
+
+                                p {
+                                    font-size: 14px;
+                                    line-height: 24px;
+
+                                    span {
+                                        font-weight: 600;
+                                    }
+
+                                    a {
+                                        color: $colorPink;
+                                        font-weight: 500;
+                                        text-decoration: none;
+                                    }
+
+                                    a:hover {
+                                        color: $colorOrange;
+                                    }
+                                }
+                            }
+
+                            .card:hover {
+                                border: 1px solid rgba($colorOrange, $alpha: 0.5);
+                            }
+                        }
+                    }
+
+                    .card-footer {
+                        border-top: 0px solid $colorGray;
+                        border-bottom: 1px solid $colorGray;
+                        border-left: 1px solid $colorGray;
+                        border-right: 1px solid $colorGray;
+                        background-color: $colorLight;
+                        text-align: center;
+                        height: 70px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        a {
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: $colorPink;
+                            text-decoration: none;
+                        }
+
+                        a:hover {
+                            color: $colorOrange;
+                        }
+                    }
+                }
             }
         }
     }

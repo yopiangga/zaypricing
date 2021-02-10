@@ -1,5 +1,6 @@
 
 import './assets/css/css-reset.css';
+import './assets/css/style.css';
 import './assets/scss/desktop-style.css';
 import BundlePricing from "./Pages/BundlePricing";
 
