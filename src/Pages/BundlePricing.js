@@ -1,23 +1,27 @@
 
 import React from 'react';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
 function BundlePricing() {
 
-    const [priceAll, setPriceAll] = useState({
-        free: 0,
-        advanced: 0,
-        ultra: 0,
-        addOn1: 0,
-        addOn2: 0,
-        addOn3: 0,
-        total: 0
-    });
+    // for final
+    const [pricePacket, setPricePacket] = useState(0)
+    const [priceUsers, setPriceUsers] = useState(0)
+    const [priceAddOn1, setPriceAddOn1] = useState(0)
+    const [priceAddOn2, setPriceAddOn2] = useState(0)
+    const [priceAddOn3, setPriceAddOn3] = useState(0)
+
+    let totalPrice = pricePacket + priceUsers + priceAddOn1 + priceAddOn2 + priceAddOn3
+
+    // for element
+
+    const [priceAll, setPriceAll] = useState({});
+
     const [users, setUsers] = useState(0);
     const [range, setRange] = useState(0);
 
-    const [maxUsers, setMaxUsers] = useState([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75 , 80, 85, 90, 95, 100, 105]);
+    const [maxUsers, setMaxUsers] = useState([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105]);
 
     const [packetFree, setPacketFree] = useState([0]);
     const [packetAdvanced, setPacketAdvanced] = useState([0, 79, 138, 197, 256, 315, 374, 433, 492, 551, 610, 669, 728, 787, 846, 905, 964, 1023, 1028, 1141, 1200]);
@@ -31,9 +35,40 @@ function BundlePricing() {
     const [addOn2, setAddOn2] = useState([0, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99, 105, 111, 117, 123])
     const [addOn3, setAddOn3] = useState([0, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99, 105, 111, 117, 123])
 
+    useEffect(() => {
+        setPriceAll({
+            free: 0,
+            advanced: packetAdvanced[range],
+            ultra: packetUltra[range],
+            addOn1: addOn1[range],
+            addOn2: addOn2[range],
+            addOn3: addOn3[range],
+        })
+
+    }, []);
+
     const handlePacket = (event) => {
-        let packet = event;
-        console.log(packet);
+        let packetId = event.target.id;
+        if (packetId == 'packetFree') {
+            setPricePacket(packetFree[0]);
+            setPriceUsers(userFree[0])
+            document.querySelector("#packetFree").classList.add("active");
+            document.querySelector("#packetAdvanced").classList.remove("active");
+            document.querySelector("#packetUltra").classList.remove("active");
+        } else if (packetId == 'packetAdvanced') {
+            setPricePacket(packetAdvanced[range]);
+            setPriceUsers(userAdvanced[range])
+            document.querySelector("#packetFree").classList.remove("active");
+            document.querySelector("#packetAdvanced").classList.add("active");
+            document.querySelector("#packetUltra").classList.remove("active");
+        } else if (packetId == 'packetUltra') {
+            setPricePacket(packetUltra[range]);
+            setPriceUsers(userUltra[range])
+            document.querySelector("#packetFree").classList.remove("active");
+            document.querySelector("#packetAdvanced").classList.remove("active");
+            document.querySelector("#packetUltra").classList.add("active");
+        }
+
     }
 
     const handleInputUser = () => {
@@ -41,16 +76,12 @@ function BundlePricing() {
         setUsers(usersLocal);
         let j = 0;
 
-        if(usersLocal%5 == 0){
-            setRange(usersLocal)
-        } else {
-            for(let i=0; i<maxUsers.length; i++){
-                if(usersLocal > maxUsers[i]){
-                    j = j + 1;
-                }
-            }   
-            setRange(j);
+        for (let i = 0; i < maxUsers.length; i++) {
+            if (usersLocal > maxUsers[i]) {
+                j = j + 1;
+            }
         }
+        setRange(j);
 
         setPriceAll({
             free: 0,
@@ -60,15 +91,62 @@ function BundlePricing() {
             addOn2: addOn2[j],
             addOn3: addOn3[j],
         })
+
+        setPricePacket(0);
+        setPriceUsers(userAdvanced[range])
+        document.querySelector("#packetFree").classList.remove("active");
+        document.querySelector("#packetAdvanced").classList.remove("active");
+        document.querySelector("#packetUltra").classList.remove("active");
+
+        document.querySelector("#checkbox-1").checked = false
+        document.querySelector("#checkbox-2").checked = false
+        document.querySelector("#checkbox-3").checked = false
     }
 
 
     const handleRange = () => {
 
     }
-    
-    console.log(users);
-    console.log(range);
+
+    const handleCheckBox = (event) => {
+        let checkId = event.target.id;
+        let checkbox1 = document.querySelector("#checkbox-1").checked
+        let checkbox2 = document.querySelector("#checkbox-2").checked
+        let checkbox3 = document.querySelector("#checkbox-3").checked
+
+        if (checkId == "add-on-1") {
+            if (checkbox1) {
+                document.querySelector("#card-add-on-1").classList.remove("active");
+                document.querySelector("#checkbox-1").checked = false
+                setPriceAddOn1(0)
+            } else {
+                document.querySelector("#card-add-on-1").classList.add("active");
+                document.querySelector("#checkbox-1").checked = true
+                setPriceAddOn1(priceAll.addOn1)
+            }
+        } else if (checkId == "add-on-2") {
+            if (checkbox2) {
+                document.querySelector("#card-add-on-2").classList.remove("active");
+                document.querySelector("#checkbox-2").checked = false
+                setPriceAddOn2(0)
+            } else {
+                document.querySelector("#card-add-on-2").classList.add("active");
+                document.querySelector("#checkbox-2").checked = true
+                setPriceAddOn2(priceAll.addOn2)
+            }
+        } else if (checkId == "add-on-3") {
+            if (checkbox3) {
+                document.querySelector("#card-add-on-3").classList.remove("active");
+                document.querySelector("#checkbox-3").checked = false
+                setPriceAddOn3(0)
+            } else {
+                document.querySelector("#card-add-on-3").classList.add("active");
+                document.querySelector("#checkbox-3").checked = true
+                setPriceAddOn3(priceAll.addOn3)
+            }
+        }
+
+    }
 
     return (
         <div className="BundlePricing-Page">
@@ -90,18 +168,18 @@ function BundlePricing() {
                             </div>
                             <div className="packet-body">
                                 <div className="card-group">
-                                    <div className="card" name="packetFree" onClick={handlePacket}>
-                                        <h4>Free</h4>
-                                        <h5><span>€{priceAll.free}</span>/year</h5>
-                                    </div>
-                                    <div className="card" name="packetAdvanced" onClick={handlePacket}>
-                                        <h4>Advanced</h4>
-                                        <h5><span>€{priceAll.advanced}</span>/year</h5>
-                                    </div>
-                                    <div className="card" name="packetUltra" onClick={handlePacket}>
-                                        <h4>Ultra</h4>
-                                        <h5><span>€{priceAll.ultra}</span>/year</h5>
-                                    </div>
+                                    <button className="card" id="packetFree" value={priceAll.free} onClick={handlePacket}>
+                                        Free <br />
+                                        €{priceAll.free}/year
+                                    </button>
+                                    <button className="card" id="packetAdvanced" value={priceAll.advanced} onClick={handlePacket}>
+                                        Advanced <br />
+                                        €{priceAll.advanced}/year
+                                    </button>
+                                    <button className="card" id="packetUltra" value={priceAll.ultra} onClick={handlePacket}>
+                                        Ultra <br />
+                                        €{priceAll.ultra}/year
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -139,30 +217,30 @@ function BundlePricing() {
                             <div className="addOn-body">
                                 <div className="card-group">
 
-                                    <div className="card">
-                                        <input type="checkbox" name="add-ons-1" />
-                                        <div className="card-text">
-                                            <h4>Ads Limit Increase 1</h4>
-                                            <h5>€{priceAll.addOn1}/year</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, sit distinctio? Cumque odit magnam nesciunt nihil asperiores, debitis sunt provident quos consectetur nobis modi unde quaerat accusamus ipsam nisi blanditiis.</p>
+                                    <div className="card" id="add-on-1" onClick={handleCheckBox}>
+                                        <input type="checkbox" id="checkbox-1" />
+                                        <div className="card-text" id="add-on-1">
+                                            <h4 id="add-on-1">Ads Limit Increase 1</h4>
+                                            <h5 id="add-on-1">€{priceAll.addOn1}/year</h5>
+                                            <p id="add-on-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, sit distinctio? Cumque odit magnam nesciunt nihil asperiores, debitis sunt provident quos consectetur nobis modi unde quaerat accusamus ipsam nisi blanditiis.</p>
                                         </div>
                                     </div>
 
-                                    <div className="card">
-                                        <input type="checkbox" name="add-ons-1" />
-                                        <div className="card-text">
-                                            <h4>Ads Limit Increase 2</h4>
-                                            <h5>€{priceAll.addOn2}/year</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, sit distinctio? Cumque odit magnam nesciunt nihil asperiores, debitis sunt provident quos consectetur nobis modi unde quaerat accusamus ipsam nisi blanditiis.</p>
+                                    <div className="card" id="add-on-2" onClick={handleCheckBox}>
+                                        <input type="checkbox" id="checkbox-2" />
+                                        <div className="card-text" id="add-on-2">
+                                            <h4 id="add-on-2">Ads Limit Increase 2</h4>
+                                            <h5 id="add-on-2">€{priceAll.addOn2}/year</h5>
+                                            <p id="add-on-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, sit distinctio? Cumque odit magnam nesciunt nihil asperiores, debitis sunt provident quos consectetur nobis modi unde quaerat accusamus ipsam nisi blanditiis.</p>
                                         </div>
                                     </div>
 
-                                    <div className="card">
-                                        <input type="checkbox" name="add-ons-1" />
-                                        <div className="card-text">
-                                            <h4>Ads Limit Increase 3</h4>
-                                            <h5>€{priceAll.addOn3}/year</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, sit distinctio? Cumque odit magnam nesciunt nihil asperiores, debitis sunt provident quos consectetur nobis modi unde quaerat accusamus ipsam nisi blanditiis.</p>
+                                    <div className="card" id="add-on-3" onClick={handleCheckBox}>
+                                        <input type="checkbox" id="checkbox-3" />
+                                        <div className="card-text" id="add-on-3">
+                                            <h4 id="add-on-3">Ads Limit Increase 3</h4>
+                                            <h5 id="add-on-3">€{priceAll.addOn3}/year</h5>
+                                            <p id="add-on-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, sit distinctio? Cumque odit magnam nesciunt nihil asperiores, debitis sunt provident quos consectetur nobis modi unde quaerat accusamus ipsam nisi blanditiis.</p>
                                         </div>
                                     </div>
 
@@ -181,31 +259,52 @@ function BundlePricing() {
                                 <div className="list-bundle">
                                     <h3>Your Bundle</h3>
                                     <div className="card-group">
-                                        <div className="card">
+                                        <div className="card active">
                                             <div className="card-text">
-                                                <h4>Marketing Hubs Enterprise</h4>
-                                                <h5><span>€890</span> per year</h5>
+                                                <h4>Packet Order</h4>
+                                                <h5><span>€{pricePacket}</span> per year</h5>
                                             </div>
-                                            <div className="card-icon">
+                                            <div className="card-icon" style={{display: "none"}}>
                                                 <FaTimes />
                                             </div>
                                         </div>
-                                        <div className="card">
+                                        <div className="card active">
                                             <div className="card-text">
-                                                <h4>Marketing Hubs Enterprise</h4>
-                                                <h5><span>€890</span> per year</h5>
+                                                <h4>Users P/U</h4>
+                                                <h5><span>€{priceUsers}</span> per year</h5>
                                             </div>
-                                            <div className="card-icon">
+                                            <div className="card-icon" style={{display: "none"}}>
                                                 <FaTimes />
                                             </div>
                                         </div>
-                                        <div className="card">
+                                        <div className="card" id="card-add-on-1">
                                             <div className="card-text">
-                                                <h4>Marketing Hubs Enterprise</h4>
-                                                <h5><span>€890</span> per year</h5>
+                                                <h4>Add On 1</h4>
+                                                <h5><span>€{priceAddOn1}</span> per year</h5>
                                             </div>
                                             <div className="card-icon">
-                                                <FaTimes />
+                                                <FaTimes  id="add-on-1"></FaTimes>
+                                                <div className="icon-FaTimes" id="add-on-1" onClick={handleCheckBox}></div>
+                                            </div>
+                                        </div>
+                                        <div className="card" id="card-add-on-2">
+                                            <div className="card-text">
+                                                <h4>Add On 2</h4>
+                                                <h5><span>€{priceAddOn2}</span> per year</h5>
+                                            </div>
+                                            <div className="card-icon">
+                                                <FaTimes  id="add-on-2"></FaTimes>
+                                                <div className="icon-FaTimes" id="add-on-2" onClick={handleCheckBox}></div>
+                                            </div>
+                                        </div>
+                                        <div className="card" id="card-add-on-3">
+                                            <div className="card-text">
+                                                <h4>Add On 3</h4>
+                                                <h5><span>€{priceAddOn3}</span> per year</h5>
+                                            </div>
+                                            <div className="card-icon">
+                                                <div className="icon-FaTimes" id="add-on-3" onClick={handleCheckBox}></div>
+                                                <FaTimes  id="add-on-3"></FaTimes>
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +312,7 @@ function BundlePricing() {
                                 <hr />
                                 <div className="text-price">
                                     <h2>Yearly cost : </h2>
-                                    <h2>€{priceAll.total}</h2>
+                                    <h2>€{totalPrice}</h2>
                                 </div>
                                 <div className="discount">
                                     <div className="card">

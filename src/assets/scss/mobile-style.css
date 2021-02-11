@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1024px) {
+@media only screen and (max-width: 1023px) {
   @font-face {
     font-family: "Poppins";
     src: url("../fonts/poppins/Poppins-Regular.ttf");
@@ -38,7 +38,7 @@
             justify-content: center;
   }
   .BundlePricing-Page .content {
-    width: 80%;
+    width: 90%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -53,7 +53,7 @@
   }
   .BundlePricing-Page .content .content-head {
     width: 100%;
-    height: 200px;
+    height: 300px;
     text-align: center;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -81,12 +81,17 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .BundlePricing-Page .content .content-body .content-choose {
-    width: 65%;
+    width: 100%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     padding: 0px 10px 0px 10px;
+    margin-bottom: 50px;
   }
   .BundlePricing-Page .content .content-body .content-choose .packet {
     width: 100%;
@@ -133,7 +138,7 @@
     outline: none;
   }
   .BundlePricing-Page .content .content-body .content-choose .packet .packet-body .card-group .card {
-    width: 215px;
+    width: 100px;
     height: 90px;
     background-color: white;
     border: 2px solid rgba(255, 0, 121, 0.4);
@@ -185,14 +190,16 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body p {
-    width: 75%;
+    width: 100%;
     font-size: 14px;
     line-height: 21px;
+    margin-bottom: 20px;
   }
   .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body p a {
     color: #FF0079;
@@ -202,7 +209,7 @@
     color: #FF9300;
   }
   .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body input {
-    width: 23%;
+    width: 50%;
     outline: none;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -280,7 +287,7 @@
     border: 1px solid rgba(255, 147, 0, 0.5);
   }
   .BundlePricing-Page .content .content-body .content-price {
-    width: 35%;
+    width: 100%;
     padding: 0px 20px 0px 20px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -456,4 +463,4 @@
     color: #FF9300;
   }
 }
-/*# sourceMappingURL=desktop-style.css.map */
+/*# sourceMappingURL=mobile-style.css.map */
