@@ -138,7 +138,7 @@
     outline: none;
   }
   .BundlePricing-Page .content .content-body .content-choose .packet .packet-body .card-group .card {
-    width: 100px;
+    width: 30%;
     height: 90px;
     background-color: white;
     border: 2px solid rgba(255, 0, 121, 0.4);
@@ -208,7 +208,7 @@
   .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body p a:hover {
     color: #FF9300;
   }
-  .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body input {
+  .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body select {
     width: 50%;
     outline: none;
     -webkit-box-sizing: border-box;
