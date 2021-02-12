@@ -191,16 +191,29 @@ function BundlePricing() {
                                 </div>
                                 <div className="title-body">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. ipsum dolor sit amet consectetur adipisicing elit. <a> More details.</a></p>
-                                    <input type="number" className="inputUser" value={users} name="inputUser" onChange={handleInputUser} />
-                                </div>
-                            </div>
-                            <div className="number-body">
-                                <div className="scroll-bar">
-                                    <input type="range" className="inputRangeUsers" min="5" max="105" value={maxUsers[range]} onChange={handleRange} />
-                                </div>
-                                <div className="range-value">
-                                    <h5>5</h5>
-                                    <h5>105</h5>
+                                    <select value={users} name="inputUser" onChange={handleInputUser} className="inputUser">
+                                        <option value="5">0 - 5</option>
+                                        <option value="10">6 - 10</option>
+                                        <option value="15">11 - 15</option>
+                                        <option value="20">16 - 20</option>
+                                        <option value="25">21 - 25</option>
+                                        <option value="30">26 - 30</option>
+                                        <option value="35">31 - 35</option>
+                                        <option value="40">36 - 40</option>
+                                        <option value="45">41 - 45</option>
+                                        <option value="50">46 - 50</option>
+                                        <option value="55">51 - 55</option>
+                                        <option value="60">56 - 60</option>
+                                        <option value="65">61 - 65</option>
+                                        <option value="70">66 - 70</option>
+                                        <option value="75">71 - 75</option>
+                                        <option value="80">76 - 80</option>
+                                        <option value="85">81 - 85</option>
+                                        <option value="90">86 - 90</option>
+                                        <option value="95">91 - 95</option>
+                                        <option value="100">96 - 100</option>
+                                        <option value="105">Etc</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

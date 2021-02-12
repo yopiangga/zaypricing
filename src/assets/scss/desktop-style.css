@@ -201,7 +201,7 @@
   .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body p a:hover {
     color: #FF9300;
   }
-  .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body input {
+  .BundlePricing-Page .content .content-body .content-choose .number-users .number-title .title-body select {
     width: 23%;
     outline: none;
     -webkit-box-sizing: border-box;
