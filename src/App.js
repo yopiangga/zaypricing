@@ -5,12 +5,15 @@ import './assets/scss/desktop-style.css';
 import './assets/scss/mobile-style.css';
 
 import BundlePricing from "./Pages/BundlePricing";
+import { DataProvider } from './Pages/DataContext';
 
 function App() {
   return (
-    <div className="App">
-      <BundlePricing />
-    </div>
+    <DataProvider>
+      <div className="App">
+        <BundlePricing />
+      </div>
+    </DataProvider>
   );
 }
 
